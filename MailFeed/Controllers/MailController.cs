@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Dynamic;
 using System.Collections.ObjectModel;
+using NLog;
 
 namespace MailFeed.Controllers
 {
@@ -17,6 +18,8 @@ namespace MailFeed.Controllers
         {
             Inbox = new ObservableCollection<Mail>();
         }
+
+        private static Logger log = LogManager.GetCurrentClassLogger();
 
 
         public static ObservableCollection<Mail> Inbox
@@ -51,12 +54,18 @@ namespace MailFeed.Controllers
 
         public void ReceiveMail(string sender, string receiver, string subject, string body)
         {
+            try
+            {
+                var bodyHtml = HttpContext.Request["body-html"]; // MVC don't support hyphens in variables so we have to get the html this way
 
-            var bodyHtml = HttpContext.Request["body-html"]; // MVC don't support hyphens in variables so we have to get the html this way
+                var mail = new Mail { From = sender, To = receiver, Body = bodyHtml, Subject = subject };
 
-            var mail = new Mail { From = sender, To = receiver, Body = bodyHtml, Subject = subject };
-
-            Inbox.Add(mail);
+                Inbox.Add(mail);
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex);
+            }
         }
 
 

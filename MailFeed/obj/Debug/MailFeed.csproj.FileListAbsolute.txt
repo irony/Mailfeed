@@ -7,3 +7,5 @@ c:\users\cln.iteam\documents\visual studio 10\Projects\MailFeed\MailFeed\obj\Deb
 c:\users\cln.iteam\documents\visual studio 10\Projects\MailFeed\MailFeed\obj\Debug\MailFeed.pdb
 c:\users\cln.iteam\documents\visual studio 10\Projects\MailFeed\MailFeed\bin\Microsoft.Web.Infrastructure.dll
 c:\users\cln.iteam\documents\visual studio 10\Projects\MailFeed\MailFeed\bin\SignalR.dll
+c:\users\cln.iteam\documents\visual studio 10\Projects\MailFeed\MailFeed\bin\NLog.dll
+c:\users\cln.iteam\documents\visual studio 10\Projects\MailFeed\MailFeed\bin\NLog.xml
