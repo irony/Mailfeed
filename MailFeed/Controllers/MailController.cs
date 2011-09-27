@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Dynamic;
+using System.Collections.ObjectModel;
 
 namespace MailFeed.Controllers
 {
@@ -14,10 +15,11 @@ namespace MailFeed.Controllers
 
         static MailController()
         {
-            Inbox = new Mail[0];
+            Inbox = new ObservableCollection<Mail>();
         }
 
-        public static Mail[] Inbox
+
+        public static ObservableCollection<Mail> Inbox
         {
             get;
             set;
@@ -41,10 +43,7 @@ namespace MailFeed.Controllers
         public ActionResult Add(Mail mail)
         {
             // TODO: Add to DB
-            List<Mail> mails = new List<Mail>();
-            mails.Add(mail);
-            mails.AddRange(Inbox);
-            Inbox = mails.ToArray();
+            Inbox.Add(mail);
 
 
             return new RedirectResult("/Mail");

@@ -4,10 +4,11 @@
     ViewBag.Title = "Index";
 }
 
+    <script src="@Url.Content("~/Scripts/jquery.signalR.min.js")" type="text/javascript"></script>
 <h2>Index</h2>
 
 
-<section>
+<section id="mails">
 
     @foreach(var mail in Model.Inbox){
     <article>
@@ -18,3 +19,42 @@
 
 </section>
 <a href="/Mail/Add">Add new mail</a>
+
+
+    <input type="text" placeholder="Subject" id="subject" name="Subject" />
+    <input type="text" placeholder="Body" id="body" name="Body" />
+    <input type="text" placeholder="From" id="from" name="From" />
+    <input type="text" placeholder="To" id="to" name="To" />
+
+    <input type="submit"  id="add"/>
+
+<script type="text/javascript">
+    $(function () {
+        // Proxy created on the fly
+        var mailHub = $.connection.mailHub;
+
+        // Declare a function on the chat hub so the server can invoke it
+        mailHub.updateInbox = function (mails) {
+            $('#mails').empty();
+            $(mails).each(function () {
+                $('#mails').append('<article><h2>' + this.Subject + '<h2><p>' + this.Body + '</p></article>');
+            });
+        };
+
+        mailHub.alert = function (message) {
+            alert(message);
+        };
+
+        $("#add").click(function () {
+            // Call the chat method on the server
+            mailHub.add({ Subject: $('#subject').val(), Body: $('#body').val()
+            });
+        });
+
+
+        // Start the connection
+        $.connection.hub.start();
+    });
+</script>
+
+<script src="/signalr/hubs" type="text/javascript"></script>
