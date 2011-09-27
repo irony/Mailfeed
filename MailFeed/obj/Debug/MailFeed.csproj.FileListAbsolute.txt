@@ -1,0 +1,9 @@
+c:\users\cln.iteam\documents\visual studio 10\Projects\MailFeed\MailFeed\bin\MailFeed.dll
+c:\users\cln.iteam\documents\visual studio 10\Projects\MailFeed\MailFeed\bin\MailFeed.pdb
+c:\users\cln.iteam\documents\visual studio 10\Projects\MailFeed\MailFeed\bin\EntityFramework.dll
+c:\users\cln.iteam\documents\visual studio 10\Projects\MailFeed\MailFeed\bin\EntityFramework.xml
+c:\users\cln.iteam\documents\visual studio 10\Projects\MailFeed\MailFeed\obj\Debug\ResolveAssemblyReference.cache
+c:\users\cln.iteam\documents\visual studio 10\Projects\MailFeed\MailFeed\obj\Debug\MailFeed.dll
+c:\users\cln.iteam\documents\visual studio 10\Projects\MailFeed\MailFeed\obj\Debug\MailFeed.pdb
+c:\users\cln.iteam\documents\visual studio 10\Projects\MailFeed\MailFeed\bin\Microsoft.Web.Infrastructure.dll
+c:\users\cln.iteam\documents\visual studio 10\Projects\MailFeed\MailFeed\bin\SignalR.dll

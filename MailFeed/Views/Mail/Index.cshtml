@@ -1,0 +1,20 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<section>
+
+    @foreach(var mail in Model.Inbox){
+    <article>
+        <h2>@mail.Subject</h2>
+        <p>@mail.Body</p>
+    </article>
+    }
+
+</section>
+<a href="/Mail/Add">Add new mail</a>
