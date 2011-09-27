@@ -49,5 +49,17 @@ namespace MailFeed.Controllers
             return new RedirectResult("/Mail");
         }
 
+        public void ReceiveMail(string sender, string receiver, string subject, string body)
+        {
+
+            var bodyHtml = HttpContext.Request["body-html"]; // MVC don't support hyphens in variables so we have to get the html this way
+
+            var mail = new Mail { From = sender, To = receiver, Body = bodyHtml, Subject = subject };
+
+            Inbox.Add(mail);
+        }
+
+
+
     }
 }

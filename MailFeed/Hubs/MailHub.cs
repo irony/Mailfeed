@@ -26,5 +26,6 @@ using System.Collections.ObjectModel;namespace MailFeed.Hubs
             MailController.Inbox.Add(mail);
             Caller.alert("Mail sent!");
         }
+
     }
 }
