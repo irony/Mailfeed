@@ -10,10 +10,19 @@ using System.Collections.ObjectModel;namespace MailFeed.Hubs
 {
     public class MailHub : Hub
     {
+
+        /// <summary>
+        /// We wire up the subscription to the Inbox ObservableCollection
+        /// </summary>
         public MailHub(){
             MailController.Inbox.CollectionChanged += new NotifyCollectionChangedEventHandler(newMail);
         }
 
+        /// <summary>
+        /// When a new item is added to the Inbox Collection we will get a notification here which we will distribute to the listening clients
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void newMail(object sender, NotifyCollectionChangedEventArgs e)
         {
  	        Clients.updateInbox(MailController.Inbox);
@@ -21,6 +30,11 @@ using System.Collections.ObjectModel;namespace MailFeed.Hubs
             // Clients.alert("You've got mail!");
         }
 
+        /// <summary>
+        /// Use this method to add emails to the collection from the client. When a new item is added we will call the caller client 
+        /// function alert(message) with a message notifying the client that all went well that the email was "sent" successfully.
+        /// </summary>
+        /// <param name="mail"></param>
         public void Add(Mail mail)
         {
             MailController.Inbox.Add(mail);

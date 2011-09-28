@@ -61,7 +61,7 @@ namespace MailFeed.Controllers
 
                 var mail = new Mail { From = sender, To = receiver, Body = bodyHtml, Subject = subject };
 
-                Inbox.Add(mail);
+                Inbox.Insert(0, mail);
             }
             catch (Exception ex)
             {
