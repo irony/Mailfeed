@@ -22,6 +22,10 @@ namespace MailFeed.Controllers
         private static Logger log = LogManager.GetCurrentClassLogger();
 
 
+        /// <summary>
+        /// By setting this collection to Observable we can subscribe to the events when adding and removing items in this collection. 
+        /// We will use this to signal changes to the clients via the SignalR Hub.
+        /// </summary>
         public static ObservableCollection<Mail> Inbox
         {
             get;
