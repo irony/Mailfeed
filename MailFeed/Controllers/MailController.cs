@@ -53,7 +53,7 @@ namespace MailFeed.Controllers
         }
 
         [HttpPost, ValidateInput(false)]
-        public void ReceiveMail(string sender, string receiver, string subject, string body)
+        public void ReceiveMail(string sender, string receiver, string subject)
         {
             try
             {
