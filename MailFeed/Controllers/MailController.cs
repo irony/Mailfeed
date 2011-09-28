@@ -52,6 +52,7 @@ namespace MailFeed.Controllers
             return new RedirectResult("/Mail");
         }
 
+        [HttpPost, ValidateInput(false)]
         public void ReceiveMail(string sender, string receiver, string subject, string body)
         {
             try
