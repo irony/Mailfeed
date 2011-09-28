@@ -9,3 +9,7 @@ c:\users\cln.iteam\documents\visual studio 10\Projects\MailFeed\MailFeed\bin\Mic
 c:\users\cln.iteam\documents\visual studio 10\Projects\MailFeed\MailFeed\bin\SignalR.dll
 c:\users\cln.iteam\documents\visual studio 10\Projects\MailFeed\MailFeed\bin\NLog.dll
 c:\users\cln.iteam\documents\visual studio 10\Projects\MailFeed\MailFeed\bin\NLog.xml
+C:\Users\cln.ITEAM\Documents\visual studio 10\Projects\MailFeed\MailFeed\bin\NLog.config
+C:\Users\cln.ITEAM\Documents\visual studio 10\Projects\MailFeed\MailFeed\bin\Web.config
+C:\Users\cln.ITEAM\Documents\visual studio 10\Projects\MailFeed\MailFeed\bin\Web.Debug.config
+C:\Users\cln.ITEAM\Documents\visual studio 10\Projects\MailFeed\MailFeed\bin\Web.Release.config

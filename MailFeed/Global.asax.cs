@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using NLog;
 
 namespace MailFeed
 {
@@ -35,6 +36,17 @@ namespace MailFeed
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+
+            this.Error += new EventHandler(MvcApplication_Error);
         }
+
+        void MvcApplication_Error(object sender, EventArgs e)
+        {
+            Logger log = LogManager.GetCurrentClassLogger();
+
+            log.Error("Error : " + e.ToString());
+        }
+
+        
     }
 }
