@@ -72,6 +72,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\mu-dd4bffbb-ff2e9926-5a80952c-1cb2663eController.cs" />
     <Compile Include="Hubs\MailHub.cs" />
     <Compile Include="Models\Mail.cs" />
     <Compile Include="Controllers\MailController.cs" />
