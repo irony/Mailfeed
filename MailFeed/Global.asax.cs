@@ -28,9 +28,6 @@ namespace MailFeed
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
 
-            routes.IgnoreRoute("mu-dd4bffbb-ff2e9926-5a80952c-1cb2663e.txt");
-
-            //routes.MapRoute("Blitz", "mu-dd4bffbb-ff2e9926-5a80952c-1cb2663e.txt", new { controller = "Home", action = "BlitzAuthorization" });
         }
 
         protected void Application_Start()
