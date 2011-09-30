@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Dynamic;
 using System.Collections.ObjectModel;
 using NLog;
+using MailFeed.Models;
 
 namespace MailFeed.Controllers
 {
@@ -16,26 +17,16 @@ namespace MailFeed.Controllers
 
         static MailController()
         {
-            Inbox = new ObservableCollection<Mail>();
         }
 
         private static Logger log = LogManager.GetCurrentClassLogger();
 
 
-        /// <summary>
-        /// By setting this collection to Observable we can subscribe to the events when adding and removing items in this collection. 
-        /// We will use this to signal changes to the clients via the SignalR Hub.
-        /// </summary>
-        public static ObservableCollection<Mail> Inbox
-        {
-            get;
-            set;
-        }
 
         public ActionResult Index()
         {
             dynamic model = new ExpandoObject();
-            model.Inbox = Inbox;
+            model.Inbox = MvcApplication.Inbox;
 
             return View(model);
         }
@@ -50,8 +41,7 @@ namespace MailFeed.Controllers
         public ActionResult Add(Mail mail)
         {
             // TODO: Add to DB
-            Inbox.Add(mail);
-
+            MvcApplication.Inbox.Add(mail);
 
             return new RedirectResult("/Mail");
         }
@@ -65,7 +55,7 @@ namespace MailFeed.Controllers
 
                 var mail = new Mail { From = sender, To = receiver, Body = bodyHtml, Subject = subject };
 
-                Inbox.Insert(0, mail);
+                MvcApplication.Inbox.Insert(0, mail);
             }
             catch (Exception ex)
             {

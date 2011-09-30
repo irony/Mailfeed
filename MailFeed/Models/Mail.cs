@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
-namespace MailFeed.Controllers
+namespace MailFeed.Models
 {
     public class Mail
     {

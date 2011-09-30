@@ -7,7 +7,7 @@
 
     <div id="codes">
         @foreach(var code in Model.Codes){
-            <img src="@code.Url" style="opacity: @(code.Scanned ? 0.5: 1)" />
+            <img src="@code.Url" style="opacity: @(code.Scanned ? "0.5": "1")" />
         }
     </div>
 
@@ -20,7 +20,7 @@
         qrHub.codeScanned = function (codes) {
             $('#codes').empty();
             $(mails).each(function () {
-                $('#codes').append('<img src="' + this.Url + '" style="opacity: ' + (this.Scanned ? 0.5 : 1) + '" />');
+                $('#codes').append('<img src="' + this.Url + '" style="opacity: ' + (this.Scanned ? "0.5" : "1") + '" />');
             });
         };
 

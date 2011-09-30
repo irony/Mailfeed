@@ -15,7 +15,7 @@ using System.Collections.ObjectModel;namespace MailFeed.Hubs
         /// We wire up the subscription to the Inbox ObservableCollection
         /// </summary>
         public QrHub(){
-            QRController.IssuedCodes.CollectionChanged += new NotifyCollectionChangedEventHandler(codeScanned);
+            MvcApplication.IssuedCodes.CollectionChanged += new NotifyCollectionChangedEventHandler(codeScanned);
         }
 
         /// <summary>
@@ -25,7 +25,7 @@ using System.Collections.ObjectModel;namespace MailFeed.Hubs
         /// <param name="e"></param>
         void codeScanned(object sender, NotifyCollectionChangedEventArgs e)
         {
- 	        Clients.updateCodes(QRController.IssuedCodes);
+            Clients.updateCodes(MvcApplication.IssuedCodes);
         }
 
     }

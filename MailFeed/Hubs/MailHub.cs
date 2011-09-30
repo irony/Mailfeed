@@ -6,7 +6,9 @@ using SignalR.Hubs;
 using MailFeed.Controllers;
 using System.Collections.Specialized;
 
-using System.Collections.ObjectModel;namespace MailFeed.Hubs
+using System.Collections.ObjectModel;
+using MailFeed.Models;
+namespace MailFeed.Hubs
 {
     public class MailHub : Hub
     {
@@ -15,7 +17,7 @@ using System.Collections.ObjectModel;namespace MailFeed.Hubs
         /// We wire up the subscription to the Inbox ObservableCollection
         /// </summary>
         public MailHub(){
-            MailController.Inbox.CollectionChanged += new NotifyCollectionChangedEventHandler(newMail);
+            MvcApplication.Inbox.CollectionChanged += new NotifyCollectionChangedEventHandler(newMail);
         }
 
         /// <summary>
@@ -25,7 +27,7 @@ using System.Collections.ObjectModel;namespace MailFeed.Hubs
         /// <param name="e"></param>
         void newMail(object sender, NotifyCollectionChangedEventArgs e)
         {
- 	        Clients.updateInbox(MailController.Inbox);
+            Clients.updateInbox(MvcApplication.Inbox);
             
             // Clients.alert("You've got mail!");
         }
@@ -37,7 +39,7 @@ using System.Collections.ObjectModel;namespace MailFeed.Hubs
         /// <param name="mail"></param>
         public void Add(Mail mail)
         {
-            MailController.Inbox.Add(mail);
+            MvcApplication.Inbox.Add(mail);
             Caller.alert("Mail sent!");
         }
 

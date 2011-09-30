@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using NLog;
+using MailFeed.Models;
+using System.Collections.ObjectModel;
 
 namespace MailFeed
 {
@@ -17,6 +19,20 @@ namespace MailFeed
         {
             filters.Add(new HandleErrorAttribute());
         }
+
+        public static ObservableCollection<Qr> IssuedCodes { get; set; }
+
+
+        /// <summary>
+        /// By setting this collection to Observable we can subscribe to the events when adding and removing items in this collection. 
+        /// We will use this to signal changes to the clients via the SignalR Hub.
+        /// </summary>
+        public static ObservableCollection<Mail> Inbox
+        {
+            get;
+            set;
+        }
+
 
         public static void RegisterRoutes(RouteCollection routes)
         {
@@ -36,6 +52,10 @@ namespace MailFeed
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+
+            MvcApplication.IssuedCodes = new ObservableCollection<Qr>();
+            MvcApplication.Inbox = new ObservableCollection<Mail>();
+
 
             this.Error += new EventHandler(MvcApplication_Error);
         }

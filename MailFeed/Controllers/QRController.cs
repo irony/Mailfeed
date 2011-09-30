@@ -14,34 +14,32 @@ namespace MailFeed.Controllers
         //
         // GET: /QR/
 
-        public static ObservableCollection<Qr> IssuedCodes { get; set; }
 
         public QRController()
         {
-            IssuedCodes = new ObservableCollection<Qr>();
         }
 
         public ActionResult Index()
         {
-            if (!IssuedCodes.Where(c => c.Scanned == true).Any())
+            if (MvcApplication.IssuedCodes == null || !MvcApplication.IssuedCodes.Where(c => c.Scanned == true).Any())
             {
-                IssuedCodes.Clear();
+                MvcApplication.IssuedCodes.Clear();
                 for (int i = 0; i < 100; i++)
                 {
-                    IssuedCodes.Add(new Qr { Url = String.Format("http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http%3A//{0}/qr/scan/{1}&chld=H|0", Request.Url.Authority.Split(':')[0], i), Scanned = false });
+                    MvcApplication.IssuedCodes.Add(new Qr { Url = String.Format("http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http%3A//{0}/qr/scan/{1}&chld=H|0", Request.Url.Authority.Split(':')[0], i), Scanned = false });
                 }
             }
 
             dynamic model = new ExpandoObject();
-            model.Codes = IssuedCodes;
+            model.Codes = MvcApplication.IssuedCodes;
             return View(model);
         }
 
         [HandleError]
         public ActionResult Scan(int id)
         {
-            if (!IssuedCodes[id].Scanned)
-                IssuedCodes[id].Scanned = true;
+            if (!MvcApplication.IssuedCodes[id].Scanned)
+                MvcApplication.IssuedCodes[id].Scanned = true;
             else
                 throw new Exception("This code is already scanned");
             
