@@ -19,14 +19,19 @@ namespace MailFeed.Controllers
         public QRController()
         {
             IssuedCodes = new ObservableCollection<Qr>();
-            for (int i = 0; i < 100; i++)
-            {
-                IssuedCodes.Add(new Qr { Url = String.Format("http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http%3A//mailfeed-1.apphb.com/qr/scan/{0}&chld=H|0", i), Scanned = false });
-            }
         }
 
         public ActionResult Index()
         {
+            if (!IssuedCodes.Where(c => c.Scanned == true).Any())
+            {
+                IssuedCodes.Clear();
+                for (int i = 0; i < 100; i++)
+                {
+                    IssuedCodes.Add(new Qr { Url = String.Format("http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http%3A//{0}/qr/scan/{1}&chld=H|0", Request.Url.Authority, i), Scanned = false });
+                }
+            }
+
             dynamic model = new ExpandoObject();
             model.Codes = IssuedCodes;
             return View(model);
