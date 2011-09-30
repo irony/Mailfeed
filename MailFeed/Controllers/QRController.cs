@@ -21,7 +21,7 @@ namespace MailFeed.Controllers
             IssuedCodes = new ObservableCollection<Qr>();
             for (int i = 0; i < 100; i++)
             {
-                IssuedCodes.Add(new Qr { Url = String.Format("http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http%3A//mailfeed-1.apphb.com/qr/{0}&chld=H|0", i), Scanned = false });
+                IssuedCodes.Add(new Qr { Url = String.Format("http://chart.apis.google.com/chart?cht=qr&chs=100x100&chl=http%3A//mailfeed-1.apphb.com/qr/scan/{0}&chld=H|0", i), Scanned = false });
             }
         }
 
@@ -33,7 +33,7 @@ namespace MailFeed.Controllers
         }
 
         [HandleError]
-        public ActionResult Scanned(int id)
+        public ActionResult Scan(int id)
         {
             if (!IssuedCodes[id].Scanned)
                 IssuedCodes[id].Scanned = true;
