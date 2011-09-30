@@ -17,9 +17,9 @@
         var qrHub = $.connection.qrHub;
 
         // Declare a function on the chat hub so the server can invoke it
-        qrHub.codeScanned = function (codes) {
+        qrHub.updateCodes = function (codes) {
             $('#codes').empty();
-            $(mails).each(function () {
+            $(codes).each(function () {
                 $('#codes').append('<img src="' + this.Url + '" style="opacity: ' + (this.Scanned ? "0.5" : "1") + '" />');
             });
         };
