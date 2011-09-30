@@ -1,0 +1,33 @@
+﻿@model dynamic
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Scan these QR codes and watch what happens</h2>
+
+    <div id="codes">
+        @foreach(var code in Model.Codes){
+            <img src="@code.Url" style="opacity: @(code.Scanned ? 0.5: 1)" />
+        }
+    </div>
+
+<script type="text/javascript">
+    $(function () {
+        // Proxy created on the fly
+        var qrHub = $.connection.qrHub;
+
+        // Declare a function on the chat hub so the server can invoke it
+        qrHub.codeScanned = function (codes) {
+            $('#codes').empty();
+            $(mails).each(function () {
+                $('#codes').append('<img src="' + this.Url + '" style="opacity: ' + (this.Scanned ? 0.5 : 1) + '" />');
+            });
+        };
+
+        // Start the connection
+        $.connection.hub.start();
+    });
+</script>
+
+<script src="@Url.Content("~/Scripts/jquery.signalR.min.js")" type="text/javascript"></script>
+<script src="/signalr/hubs" type="text/javascript"></script>
