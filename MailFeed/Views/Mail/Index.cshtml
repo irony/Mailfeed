@@ -20,7 +20,7 @@
     @foreach(var mail in Model.Inbox){
     <article contenteditable="true">
         <h2>@mail.Subject</h2>
-        <p>@mail.Body</p>
+        <p>@Html.Raw(mail.Body)</p>
     </article>
     }
 

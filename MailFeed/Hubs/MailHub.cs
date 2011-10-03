@@ -28,14 +28,8 @@ namespace MailFeed.Hubs
         /// <param name="e"></param>
         void newMail(object sender, NotifyCollectionChangedEventArgs e)
         {
-            try
-            {
+            if (Clients != null)
                 Clients.updateInbox(MvcApplication.Inbox);
-            }
-            catch(RuntimeBinderException)
-            { 
-                // ignore new errors when no clients are connected
-            }
             
             // Clients.alert("You've got mail!");
         }
