@@ -25,7 +25,8 @@ using System.Collections.ObjectModel;namespace MailFeed.Hubs
         /// <param name="e"></param>
         void codeScanned(object sender, NotifyCollectionChangedEventArgs e)
         {
-            Clients.updateCodes(MvcApplication.IssuedCodes);
+            if (Clients != null)
+                Clients.updateCodes(MvcApplication.IssuedCodes);
         }
 
     }
