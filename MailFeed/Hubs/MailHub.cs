@@ -8,6 +8,7 @@ using System.Collections.Specialized;
 
 using System.Collections.ObjectModel;
 using MailFeed.Models;
+using Microsoft.CSharp.RuntimeBinder;
 namespace MailFeed.Hubs
 {
     public class MailHub : Hub
@@ -27,7 +28,14 @@ namespace MailFeed.Hubs
         /// <param name="e"></param>
         void newMail(object sender, NotifyCollectionChangedEventArgs e)
         {
-            Clients.updateInbox(MvcApplication.Inbox);
+            try
+            {
+                Clients.updateInbox(MvcApplication.Inbox);
+            }
+            catch(RuntimeBinderException)
+            { 
+                // ignore new errors when no clients are connected
+            }
             
             // Clients.alert("You've got mail!");
         }

@@ -53,8 +53,8 @@ namespace MailFeed
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
 
-            MvcApplication.IssuedCodes = new ObservableCollection<Qr>();
-            MvcApplication.Inbox = new ObservableCollection<Mail>();
+            IssuedCodes = new ObservableCollection<Qr>();
+            Inbox = new ObservableCollection<Mail>();
 
 
             this.Error += new EventHandler(MvcApplication_Error);
