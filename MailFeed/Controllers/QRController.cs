@@ -39,7 +39,12 @@ namespace MailFeed.Controllers
         public ActionResult Scan(int id)
         {
             if (!MvcApplication.IssuedCodes[id].Scanned)
-                MvcApplication.IssuedCodes[id].Scanned = true;
+            {
+                var qr = MvcApplication.IssuedCodes[id];
+                MvcApplication.IssuedCodes.Remove(qr);
+                qr.Scanned = true;
+                MvcApplication.IssuedCodes.Insert(id, qr);
+            }
             else
                 throw new Exception("This code is already scanned");
             
