@@ -53,7 +53,7 @@ namespace MailFeed.Controllers
             {
                 var bodyHtml = HttpContext.Request["body-html"]; // MVC don't support hyphens in variables so we have to get the html this way
 
-                var mail = new Mail { From = sender, To = receiver, Body = bodyHtml, Subject = subject };
+                var mail  = new Mail { From = sender, To = receiver, Body = bodyHtml, Subject = subject };
 
                 MvcApplication.Inbox.Insert(0, mail);
             }
