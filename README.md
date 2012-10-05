@@ -7,6 +7,12 @@ This application is a proof of concept of how to create a live updated feed of i
 from Mailgun to this MVC3 application and are feeded to a SignalR event hub which syncs a feed of mail via WebSockets to the
 client with the library SignalR.
 
+DEMO
+====
+To test it live, go to:
+http://mailfeed-1.apphb.com/mail
+
+
 Current state
 =============
 This is an old lab proof of concept, use it for inspiration. If you have additions to make it more clear or generic, 
